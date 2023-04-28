@@ -4325,10 +4325,10 @@ impl ConfigController {
     }
 
     pub fn get_engine_type(&self) -> &'static str {
-        if self.get_current().storage.engine == EngineType::RaftKv2 {
-            return "partitioned-raft-kv";
+        match self.get_current().storage.engine {
+            EngineType::RaftKv2 => "partitioned-raft-kv",
+            EngineType::RaftKv => "raft-kv",
         }
-        "raft-kv"
     }
 }
 
